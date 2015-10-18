@@ -22,7 +22,7 @@ public class AppTest
 	@Before
 	public void setUp(TestContext context) {
 		vertx = Vertx.vertx();
-		vertx.deployVerticle(App.class.getName(), context.asyncAssertSuccess());
+		vertx.deployVerticle(AppMaven.class.getName(), context.asyncAssertSuccess());
 	}
 
 	@After

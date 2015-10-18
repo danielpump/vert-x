@@ -5,9 +5,11 @@ import io.vertx.core.Future;
 
 /**
  * Hello world!
+ * Classe criada a partir do exemplo do link:
+ * http://vertx.io/blog/my-first-vert-x-3-application/
  *
  */
-public class App extends AbstractVerticle {
+public class AppMaven extends AbstractVerticle {
 
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
