@@ -1,38 +1,45 @@
 package com.daniel.vertx;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import io.vertx.core.Vertx;
+import io.vertx.ext.unit.Async;
+import io.vertx.ext.unit.TestContext;
+import io.vertx.ext.unit.junit.VertxUnitRunner;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+@RunWith(VertxUnitRunner.class)
+public class AppTest
+
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+	private Vertx vertx;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+	@Before
+	public void setUp(TestContext context) {
+		vertx = Vertx.vertx();
+		vertx.deployVerticle(App.class.getName(), context.asyncAssertSuccess());
+	}
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	@After
+	public void tearDown(TestContext context) {
+		vertx.close(context.asyncAssertSuccess());
+	}
+
+	@Test
+	public void testMyApplication(TestContext context) {
+		final Async async = context.async();
+
+		vertx.createHttpClient().getNow(8080, "localhost", "/", response -> {
+			response.handler(body -> {
+				context.assertTrue(body.toString().contains("Hello"));
+				async.complete();
+			});
+		});
+	}
+
 }
