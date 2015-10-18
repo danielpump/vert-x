@@ -15,6 +15,8 @@ public class SimpleServer  extends AbstractVerticle{
 	
 	@Override
 	public void start() throws Exception {
+		
+		
 
 		vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
 			
