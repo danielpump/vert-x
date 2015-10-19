@@ -28,7 +28,7 @@ public class ChatWebSocketServer extends AbstractVerticle {
 			@Override
 			public void handle(HttpServerRequest request) {
 				request.response().sendFile(
-						'.' + (request.path().equals("/") ? "/index.html"
+						'.' + (request.path().equals("/") ? "/resource/index.html"
 								: request.path()));
 			}
 
@@ -42,11 +42,12 @@ public class ChatWebSocketServer extends AbstractVerticle {
 					ws.reject();
 					return;
 				}
-				final LocalMap<Object, String> wsSessions = vertx.sharedData().getLocalMap("websocket.chat.sessions");
-				if(wsSessions == null){
+				final LocalMap<Object, String> wsSessions = vertx.sharedData()
+						.getLocalMap("websocket.chat.sessions");
+				if (wsSessions == null) {
 					System.out.println("Fudeo");
 				}
-				wsSessions.put(ws.textHandlerID(),ws.textHandlerID());
+				wsSessions.put(ws.textHandlerID(), ws.textHandlerID());
 
 				ws.handler(new Handler<Buffer>() {
 
