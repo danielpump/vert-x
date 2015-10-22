@@ -27,9 +27,10 @@ public class ChatWebSocketServer extends AbstractVerticle {
 
 			@Override
 			public void handle(HttpServerRequest request) {
-				request.response().sendFile(
-						'.' + (request.path().equals("/") ? "/resource/index.html"
-								: request.path()));
+				request.response()
+						.sendFile(
+								'.' + (request.path().equals("/") ? "/resource/index.html"
+										: request.path()));
 			}
 
 		});
