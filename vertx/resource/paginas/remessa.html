@@ -8,14 +8,14 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="resource/style.css" type="text/css" />
-<script src="resource/paginas/remessa.js"></script>
+
 </head>
 
 <body>
 	<div id="content">
 		<h1>Gerar arquivo de remessa</h1>
 
-		<form id="remessa" method="post" enctype="application/json" >
+		
 			<div class="panel">
 				<h3>Beneficiário</h3>
 				<input id="codigoBeneficiario" class="text-field" type="text"
@@ -29,10 +29,14 @@
 					placeholder="Código do banco" /> <input id="nomeBanco"
 					class="text-field" type="text" placeholder="Nome do banco" />
 			</div>
-			<input class="button" type="submit" value="Gerar arquivo" 
-			onclick="gerarRemessa();"/>
-		</form>
+			<input class="button" type="submit" value="Gerar arquivo"
+			onclick="gerarRemessa();" />
+		
 	</div>
+
+
+	<script src="resource/jquery-2.1.4.min.js"></script>
+	<script src="resource/paginas/remessa.js"></script>
 
 </body>
 

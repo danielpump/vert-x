@@ -14,12 +14,14 @@ import io.vertx.ext.web.RoutingContext;
  */
 public class TratarRequisoesCNABRemessa {
 	
+	private static final String DEFAULT_PAGE = "./resource/paginas/remessa.html";
+
 	public static Handler<RoutingContext> tratarRota(){
 		return new Handler<RoutingContext>() {
 			@Override
-			public void handle(RoutingContext event) {
-				HttpServerResponse response = event.response();
-				response.sendFile("./resource/paginas/remessa.html");				
+			public void handle(RoutingContext context) {
+				HttpServerResponse response = context.response();
+				response.sendFile(DEFAULT_PAGE);				
 			}
 		};			
 	};
@@ -27,8 +29,10 @@ public class TratarRequisoesCNABRemessa {
 	public static Handler<RoutingContext> tratarPost(){
 		return new Handler<RoutingContext>() {
 			@Override
-			public void handle(RoutingContext event) {
+			public void handle(RoutingContext context) {
 				System.out.println("Teste");
+				System.out.println(context.getBodyAsJson());
+				context.response().sendFile(DEFAULT_PAGE);
 			}
 		};			
 	};

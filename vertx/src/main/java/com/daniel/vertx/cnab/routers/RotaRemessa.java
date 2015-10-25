@@ -19,8 +19,8 @@ public class RotaRemessa extends AbstractGeradorDeRota {
 
 	public RotaRemessa(Router roteador) {
 		super(roteador);
-		gerarRota(getRota(), TratarRequisoesCNABRemessa.tratarRota());
 		gerarPost(getRota(), TratarRequisoesCNABRemessa.tratarPost());
+		gerarRota(getRota(), TratarRequisoesCNABRemessa.tratarRota());
 	}
 
 	protected String getRota() {
