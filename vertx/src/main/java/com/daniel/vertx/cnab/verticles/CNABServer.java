@@ -37,7 +37,7 @@ public class CNABServer  extends AbstractVerticle {
 		HttpServer servidor = vertx.createHttpServer();
 		Router roteador = Router.router(vertx);
 		
-		roteador.route().handler(BodyHandler.create());
+		roteador.route().handler(BodyHandler.create());//Necessario para habilitar a recuperação do corpo das requisições
 		registrarRotas(roteador);
 		
 		servidor.requestHandler(roteador::accept).listen(8080);

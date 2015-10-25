@@ -6,7 +6,7 @@ function gerarRemessa() {
 			type : 'POST',
 			data : JSON.stringify($('#formRemessa').serializeArray()),
 			success : function() {
-				alert('POST completed');
+				//Tem essa parada
 			}
 		});
 		return false;
