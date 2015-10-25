@@ -11,8 +11,11 @@ import com.daniel.vertx.cnab.routers.AbstractGeradorDeRota;
 import com.daniel.vertx.cnab.routers.RotaRemessa;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Handler;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerRequest;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
 
 /**
  * 
@@ -34,8 +37,29 @@ public class CNABServer  extends AbstractVerticle {
 		
 		HttpServer servidor = vertx.createHttpServer();
 		Router roteador = Router.router(vertx);
+				
+		servidor.requestHandler(new Handler<HttpServerRequest>() {
+
+			@Override
+			public void handle(HttpServerRequest request) {
+				request.response()
+						.sendFile(
+								'.' + (request.path().equals("/") ? "/resource/index.html"
+										: request.path()));
+			}
+
+		});
 		
 		registrarRotas(roteador);
+		roteador.route("/resource/*").handler(new Handler<RoutingContext>() {
+
+			@Override
+			public void handle(RoutingContext context) {
+				context.response()
+						.sendFile('.' + (context.request().path()));
+			}
+
+		});
 		
 		servidor.requestHandler(roteador::accept).listen(8080);
 		

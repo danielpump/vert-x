@@ -18,17 +18,17 @@ public abstract class AbstractGeradorDeRota {
 
 	public AbstractGeradorDeRota(Router roteador) {
 		super();
-		this.roteador = roteador;
-		gerarRota();
+		this.roteador = roteador;		
 	}
 	
-	public void gerarRota(){
-		roteador.route(getRota()).handler(getHandler());
+	public void gerarRota(String rota, Handler tratamento){
+		roteador.route(rota).handler(tratamento);
+	}
+	
+	public void gerarPost(String rota, Handler tratamento){
+		roteador.post(rota).handler(tratamento);
 	}
 
-	protected abstract String getRota();
-	
-	protected abstract Handler<RoutingContext> getHandler();
 	
 
 }
