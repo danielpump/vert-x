@@ -19,6 +19,7 @@ public abstract class AbstractGeradorDeRota {
 	public AbstractGeradorDeRota(Router roteador) {
 		super();
 		this.roteador = roteador;
+		gerarRota();
 	}
 	
 	public void gerarRota(){

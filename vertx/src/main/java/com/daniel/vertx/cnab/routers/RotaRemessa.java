@@ -4,6 +4,7 @@
 package com.daniel.vertx.cnab.routers;
 
 import io.vertx.core.Handler;
+import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
@@ -25,8 +26,12 @@ public class RotaRemessa extends AbstractGeradorDeRota {
 
 	@Override
 	protected Handler<RoutingContext> getHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Handler<RoutingContext>() {
+			public void handle(RoutingContext event) {
+				HttpServerResponse response = event.response();
+				response.end("teste");				
+			};
+		};
 	}
 
 
