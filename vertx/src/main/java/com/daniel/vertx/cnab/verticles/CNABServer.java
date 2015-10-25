@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.daniel.vertx.cnab.routers.AbstractGeradorDeRota;
+import com.daniel.vertx.cnab.routers.RotaEstaticos;
 import com.daniel.vertx.cnab.routers.RotaRemessa;
 
 import io.vertx.core.AbstractVerticle;
@@ -30,6 +31,7 @@ public class CNABServer  extends AbstractVerticle {
 		rotas = new ArrayList<Class>();
 		
 		rotas.add(RotaRemessa.class);
+		rotas.add(RotaEstaticos.class);
 	}
 	
 	@Override
@@ -37,29 +39,8 @@ public class CNABServer  extends AbstractVerticle {
 		
 		HttpServer servidor = vertx.createHttpServer();
 		Router roteador = Router.router(vertx);
-				
-		servidor.requestHandler(new Handler<HttpServerRequest>() {
-
-			@Override
-			public void handle(HttpServerRequest request) {
-				request.response()
-						.sendFile(
-								'.' + (request.path().equals("/") ? "/resource/index.html"
-										: request.path()));
-			}
-
-		});
 		
 		registrarRotas(roteador);
-		roteador.route("/resource/*").handler(new Handler<RoutingContext>() {
-
-			@Override
-			public void handle(RoutingContext context) {
-				context.response()
-						.sendFile('.' + (context.request().path()));
-			}
-
-		});
 		
 		servidor.requestHandler(roteador::accept).listen(8080);
 		

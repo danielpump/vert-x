@@ -27,9 +27,5 @@ public class RotaRemessa extends AbstractGeradorDeRota {
 		return "/remessa";
 	}
 
-	protected Handler<RoutingContext> getTratarRota() {
-		return TratarRequisoesCNABRemessa.tratarRota();
-	}
-
 
 }

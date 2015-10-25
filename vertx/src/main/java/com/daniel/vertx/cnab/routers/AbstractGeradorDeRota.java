@@ -21,11 +21,11 @@ public abstract class AbstractGeradorDeRota {
 		this.roteador = roteador;		
 	}
 	
-	public void gerarRota(String rota, Handler tratamento){
+	public void gerarRota(String rota, Handler<RoutingContext> tratamento){
 		roteador.route(rota).handler(tratamento);
 	}
 	
-	public void gerarPost(String rota, Handler tratamento){
+	public void gerarPost(String rota, Handler<RoutingContext> tratamento){
 		roteador.post(rota).handler(tratamento);
 	}
 
