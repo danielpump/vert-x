@@ -15,23 +15,25 @@
 	<div id="content">
 		<h1>Gerar arquivo de remessa</h1>
 
-		
+		<form id="formRemessa" method="post" >
 			<div class="panel">
 				<h3>Beneficiário</h3>
-				<input id="codigoBeneficiario" class="text-field" type="text"
-					placeholder="Código do beneficiário" /> <input
-					id="nomeBeneficiario" class="text-field" type="text"
-					placeholder="Nome do beneficiário" /> <input id="codigoAgencia"
-					class="text-field" type="text" placeholder="Código na agência" />
+				<input id="codigoBeneficiario" name="codigoBeneficiario"
+					class="text-field" type="text" placeholder="Código do beneficiário" />
+				<input id="nomeBeneficiario" name="nomeBeneficiario"
+					class="text-field" type="text" placeholder="Nome do beneficiário" />
+				<input id="codigoAgencia" name="codigoAgencia" class="text-field"
+					type="text" placeholder="Código na agência" />
 
 				<h3>Banco</h3>
-				<input id="codigoBanco" class="text-field" type="text"
-					placeholder="Código do banco" /> <input id="nomeBanco"
-					class="text-field" type="text" placeholder="Nome do banco" />
+				<input id="codigoBanco" name="codigoBanco" class="text-field"
+					type="text" placeholder="Código do banco" /> <input id="nomeBanco"
+					name="nomeBanco" class="text-field" type="text"
+					placeholder="Nome do banco" />
 			</div>
-			<input class="button" type="submit" value="Gerar arquivo"
-			onclick="gerarRemessa();" />
-		
+			<input class="button" type="submit" value="Gerar arquivo" 
+			onclick="gerarRemessa();"/>
+		</form>
 	</div>
 
 

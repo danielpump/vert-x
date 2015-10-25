@@ -3,20 +3,17 @@
  */
 package com.daniel.vertx.cnab.verticles;
 
+import io.vertx.core.AbstractVerticle;
+import io.vertx.core.http.HttpServer;
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.BodyHandler;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.daniel.vertx.cnab.routers.AbstractGeradorDeRota;
 import com.daniel.vertx.cnab.routers.RotaEstaticos;
 import com.daniel.vertx.cnab.routers.RotaRemessa;
-
-import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Handler;
-import io.vertx.core.http.HttpServer;
-import io.vertx.core.http.HttpServerRequest;
-import io.vertx.ext.web.Router;
-import io.vertx.ext.web.RoutingContext;
 
 /**
  * 
@@ -40,6 +37,7 @@ public class CNABServer  extends AbstractVerticle {
 		HttpServer servidor = vertx.createHttpServer();
 		Router roteador = Router.router(vertx);
 		
+		roteador.route().handler(BodyHandler.create());
 		registrarRotas(roteador);
 		
 		servidor.requestHandler(roteador::accept).listen(8080);

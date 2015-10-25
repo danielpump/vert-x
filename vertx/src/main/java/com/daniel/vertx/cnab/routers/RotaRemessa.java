@@ -3,12 +3,9 @@
  */
 package com.daniel.vertx.cnab.routers;
 
-import com.daniel.vertx.cnab.handlers.TratarRequisoesCNABRemessa;
-
-import io.vertx.core.Handler;
-import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.RoutingContext;
+
+import com.daniel.vertx.cnab.handlers.TratarRequisoesCNABRemessa;
 
 /**
  * Cria o roteamento para a pagina dos arquivos de remessa.

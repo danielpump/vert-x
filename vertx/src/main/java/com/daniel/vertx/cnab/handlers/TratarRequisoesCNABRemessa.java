@@ -30,8 +30,8 @@ public class TratarRequisoesCNABRemessa {
 		return new Handler<RoutingContext>() {
 			@Override
 			public void handle(RoutingContext context) {
-				System.out.println("Teste");
-				System.out.println(context.getBodyAsJson());
+				
+				System.out.println(context.getBodyAsString());				
 				context.response().sendFile(DEFAULT_PAGE);
 			}
 		};			
