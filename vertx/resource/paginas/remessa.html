@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Remessa</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="resource/style.css" type="text/css" />
+<script src="resource/paginas/remessa.js"></script>
+</head>
+
+<body>
+	<div id="content">
+		<h1>Gerar arquivo de remessa</h1>
+
+		<form id="remessa" method="post" enctype="application/json" >
+			<div class="panel">
+				<h3>Beneficiário</h3>
+				<input id="codigoBeneficiario" class="text-field" type="text"
+					placeholder="Código do beneficiário" /> <input
+					id="nomeBeneficiario" class="text-field" type="text"
+					placeholder="Nome do beneficiário" /> <input id="codigoAgencia"
+					class="text-field" type="text" placeholder="Código na agência" />
+
+				<h3>Banco</h3>
+				<input id="codigoBanco" class="text-field" type="text"
+					placeholder="Código do banco" /> <input id="nomeBanco"
+					class="text-field" type="text" placeholder="Nome do banco" />
+			</div>
+			<input class="button" type="submit" value="Gerar arquivo" 
+			onclick="gerarRemessa();"/>
+		</form>
+	</div>
+
+</body>
+
+</html>
