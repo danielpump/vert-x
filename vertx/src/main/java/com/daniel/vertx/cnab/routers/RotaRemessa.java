@@ -3,6 +3,8 @@
  */
 package com.daniel.vertx.cnab.routers;
 
+import com.daniel.vertx.cnab.handlers.TratarRequisaoCNABRemessa;
+
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
@@ -26,12 +28,7 @@ public class RotaRemessa extends AbstractGeradorDeRota {
 
 	@Override
 	protected Handler<RoutingContext> getHandler() {
-		return new Handler<RoutingContext>() {
-			public void handle(RoutingContext event) {
-				HttpServerResponse response = event.response();
-				response.end("teste");				
-			};
-		};
+		return new TratarRequisaoCNABRemessa();
 	}
 
 
