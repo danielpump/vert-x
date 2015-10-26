@@ -5,6 +5,8 @@ package com.daniel.vertx.cnab.verticles;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.logging.JULLogDelegateFactory;
+import io.vertx.core.logging.Logger;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 
@@ -22,6 +24,8 @@ import com.daniel.vertx.cnab.routers.RotaRemessa;
  */
 public class CNABServer  extends AbstractVerticle {
 	
+	private static Logger logger = new Logger(new JULLogDelegateFactory().createDelegate("CNABServer"));
+	
 	public static  List<Class> rotas;
 	
 	static{
@@ -32,8 +36,24 @@ public class CNABServer  extends AbstractVerticle {
 	}
 	
 	@Override
-	public void start() throws Exception {
+	public void start() throws Exception {		
 		
+		logger.info("Iniciando aplicação!");
+		
+		configurarServidor();
+		
+	}
+
+	/**
+	 * Realiza a configuração do sevidor HTTP
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 */
+	private void configurarServidor() throws InstantiationException,
+			IllegalAccessException, InvocationTargetException,
+			NoSuchMethodException {
 		HttpServer servidor = vertx.createHttpServer();
 		Router roteador = Router.router(vertx);
 		
@@ -41,7 +61,6 @@ public class CNABServer  extends AbstractVerticle {
 		registrarRotas(roteador);
 		
 		servidor.requestHandler(roteador::accept).listen(8080);
-		
 	}
 
 	/**

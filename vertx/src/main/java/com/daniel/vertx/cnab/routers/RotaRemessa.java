@@ -13,11 +13,14 @@ import com.daniel.vertx.cnab.handlers.TratarRequisoesCNABRemessa;
  *
  */
 public class RotaRemessa extends AbstractGeradorDeRota {
+	
+	private TratarRequisoesCNABRemessa tratamento;
 
 	public RotaRemessa(Router roteador) {
 		super(roteador);
-		gerarPost(getRota(), TratarRequisoesCNABRemessa.tratarPost());
-		gerarRota(getRota(), TratarRequisoesCNABRemessa.tratarRota());
+		tratamento = new TratarRequisoesCNABRemessa();
+		gerarPost(getRota(), tratamento.tratarPost());
+		gerarRota(getRota(), tratamento.tratarRota());
 	}
 
 	protected String getRota() {
