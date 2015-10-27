@@ -26,7 +26,7 @@ da [URL local /remessa] (http://localhost:8080/remessa)
 
 #Repositório Verticle
 Repositório com exemplos da versão 3.1.0:
-https://github.com/vert-x3/vertx-examples
+>https://github.com/vert-x3/vertx-examples
 
 
 
