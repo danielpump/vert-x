@@ -3,6 +3,8 @@
  */
 package com.daniel.vertx.cnab.workers;
 
+import java.text.MessageFormat;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
@@ -45,6 +47,8 @@ public class GerarArquivoRemessa extends AbstractVerticle {
 				
 				String arquivoRemessa = gerarNomeArquivo();
 				
+				logger.info(MessageFormat.format("Arquivo sendo gerado em: {0}", arquivoRemessa));
+				
 				vertx.fileSystem().mkdirs(gerarCaminhoArquivo(), tratamentoFinalizacaoArquivo);
 				
 				vertx.fileSystem().writeFile(arquivoRemessa
@@ -73,7 +77,23 @@ public class GerarArquivoRemessa extends AbstractVerticle {
 			 * @return
 			 */
 			private String gerarCabecalho(VertxCNAB400Cabecalho cabecalho) {
-				return "Teste";
+				return new StringBuilder()
+						.append(cabecalho.codigoRegistro())
+						.append(cabecalho.codigoRemessa())
+						.append(cabecalho.literalRemessa())
+						.append(cabecalho.codigoServico())
+						.append(cabecalho.literalServico())
+						.append(cabecalho.codigoAgencia())
+						.append(cabecalho.codigoBeneficiario())
+						.append(cabecalho.usoExclusivo1())
+						.append(cabecalho.nomeEmpresa())
+						.append(cabecalho.codigoBanco())
+						.append(cabecalho.nomeBanco())
+						.append(cabecalho.dataGeracao())
+						.append(cabecalho.usoExclusivo2())
+						.append(cabecalho.numeroSequencialA())
+						.append(cabecalho.numeroSequencialB())												
+						.toString();
 			}
 		});
 		

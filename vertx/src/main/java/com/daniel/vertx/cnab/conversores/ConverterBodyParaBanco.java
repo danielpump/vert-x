@@ -18,7 +18,7 @@ public class ConverterBodyParaBanco implements Conversor<Banco> {
 	@Override
 	public Banco converterPara(JsonObject jsonBody) {
 
-		return new Banco(null, null);
+		return new Banco("1","1");
 	}
 
 }

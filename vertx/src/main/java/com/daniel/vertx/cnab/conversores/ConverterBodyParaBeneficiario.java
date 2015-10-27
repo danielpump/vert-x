@@ -16,7 +16,9 @@ public class ConverterBodyParaBeneficiario implements Conversor<Beneficiario> {
 	@Override
 	public Beneficiario converterPara(JsonObject jsonBody) {
 
-		return new Beneficiario(null, null);
+		Beneficiario beneficiario = new Beneficiario("1", "1");
+		beneficiario.setCodigoAgencia("1");
+		return beneficiario;
 	}
 
 }
