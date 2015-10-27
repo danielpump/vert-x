@@ -4,6 +4,8 @@
 package com.daniel.vertx.cnab.verticles;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.DeploymentOptions;
+import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.logging.JULLogDelegateFactory;
 import io.vertx.core.logging.Logger;
@@ -51,14 +53,15 @@ public class CNABServer  extends AbstractVerticle {
 	 * @throws InvocationTargetException
 	 * @throws NoSuchMethodException
 	 */
-	private void configurarServidor() throws InstantiationException,
-			IllegalAccessException, InvocationTargetException,
-			NoSuchMethodException {
+	private void configurarServidor() throws InstantiationException,IllegalAccessException, InvocationTargetException,NoSuchMethodException {
 		HttpServer servidor = vertx.createHttpServer();
 		Router roteador = Router.router(vertx);
 		
 		roteador.route().handler(BodyHandler.create());//Necessario para habilitar a recuperação do corpo das requisições
 		registrarRotas(roteador);
+		
+		vertx.deployVerticle("com.daniel.vertx.cnab.workers.GerarArquivoRemessa",
+				new DeploymentOptions().setInstances(2).setWorker(true));
 		
 		servidor.requestHandler(roteador::accept).listen(8080);
 	}
@@ -73,7 +76,7 @@ public class CNABServer  extends AbstractVerticle {
 	 */
 	private void registrarRotas(Router roteador) throws InstantiationException,IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		for (Class classeDeRoteamento : rotas) {			
-			classeDeRoteamento.getDeclaredConstructor(Router.class).newInstance(roteador);//Só pra usar metaprog de curtição...
+			classeDeRoteamento.getDeclaredConstructor(Router.class, EventBus.class).newInstance(roteador, vertx.eventBus());//Só pra usar metaprog de curtição...
 		}
 	}
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.daniel.vertx.cnab.handlers;
+package com.daniel.vertx.cnab.handlers.requisicoes;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpServerResponse;
@@ -13,9 +13,9 @@ import io.vertx.ext.web.RoutingContext;
  * @author daniel
  *
  */
-public class TratarRequisoesEstaticas {
+public class TratarRequisoesEstaticas extends HandlerPadrao {
 
-	public static Handler<RoutingContext> tratarRota() {
+	public Handler<RoutingContext> tratarRota() {
 		return new Handler<RoutingContext>() {
 			@Override
 			public void handle(RoutingContext event) {

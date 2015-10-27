@@ -1,5 +1,5 @@
 /**
- * Pacote com os handlers para tratamento de requisisções da aplicação
+ * Pacote para os handlers de outros processos do sistema, envolvendo o protocolo CNAB
  * @author daniel
  *
  */

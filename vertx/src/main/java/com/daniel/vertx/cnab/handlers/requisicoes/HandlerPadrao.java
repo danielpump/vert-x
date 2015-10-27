@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.daniel.vertx.cnab.handlers;
+package com.daniel.vertx.cnab.handlers.requisicoes;
 
 import io.vertx.core.logging.JULLogDelegateFactory;
 import io.vertx.core.logging.Logger;
@@ -31,8 +31,8 @@ public abstract class HandlerPadrao {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected HashMap<String, String> converterBodyParaMapa(RoutingContext context) {
-		HashMap<String, String> mappedJson = null; 
+	protected HashMap<String, Object> converterBodyParaMapa(RoutingContext context) {
+		HashMap<String, Object> mappedJson = null; 
 		String corpoRequest = context.getBodyAsString();
 		corpoRequest = tratarRequisicoesJQueryStringify(corpoRequest);
 		try {
@@ -63,15 +63,6 @@ public abstract class HandlerPadrao {
 		return corpoRequest;
 	}
 	
-	protected boolean validarCamposDoMapa(HashMap<String, String> camposParaValidar){
-		for (String campoDaLista : camposParaValidar()) {
-			if(Strings.isNullOrEmpty(camposParaValidar.get(campoDaLista))){
-				throw new IllegalArgumentException(MessageFormat.format("Campo {0} está com valor inválido branco ou inexistente", campoDaLista));
-			}
-		}
-		return true;
-	}
-
-	protected abstract List<String> camposParaValidar();
+	
 
 }

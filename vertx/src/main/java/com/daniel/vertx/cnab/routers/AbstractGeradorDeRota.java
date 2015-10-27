@@ -4,6 +4,7 @@
 package com.daniel.vertx.cnab.routers;
 
 import io.vertx.core.Handler;
+import io.vertx.core.eventbus.EventBus;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
@@ -16,7 +17,7 @@ public abstract class AbstractGeradorDeRota {
 	
 	protected Router roteador;
 
-	public AbstractGeradorDeRota(Router roteador) {
+	public AbstractGeradorDeRota(Router roteador, EventBus barramentoDeServicos) {
 		super();
 		this.roteador = roteador;		
 	}
