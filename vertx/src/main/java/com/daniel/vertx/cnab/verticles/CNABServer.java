@@ -20,7 +20,7 @@ import com.daniel.vertx.cnab.routers.RotaEstaticos;
 import com.daniel.vertx.cnab.routers.RotaRemessa;
 
 /**
- * 
+ * Classe que inica o servidor de geração de arquivos de remessa
  * @author daniel
  *
  */
@@ -60,6 +60,7 @@ public class CNABServer  extends AbstractVerticle {
 		roteador.route().handler(BodyHandler.create());//Necessario para habilitar a recuperação do corpo das requisições
 		registrarRotas(roteador);
 		
+		//Registrando workers
 		vertx.deployVerticle("com.daniel.vertx.cnab.workers.GerarArquivoRemessa",
 				new DeploymentOptions().setInstances(2).setWorker(true));
 		
