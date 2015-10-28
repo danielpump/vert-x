@@ -46,7 +46,7 @@ public class ChatWebSocketServer extends AbstractVerticle {
 				final LocalMap<Object, String> wsSessions = vertx.sharedData()
 						.getLocalMap("websocket.chat.sessions");
 				if (wsSessions == null) {
-					System.out.println("Fudeo");
+					System.out.println("Deu erro!");
 				}
 				wsSessions.put(ws.textHandlerID(), ws.textHandlerID());
 

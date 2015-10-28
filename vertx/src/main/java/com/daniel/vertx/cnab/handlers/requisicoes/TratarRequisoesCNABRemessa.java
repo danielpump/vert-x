@@ -55,11 +55,9 @@ public class TratarRequisoesCNABRemessa extends HandlerPadrao {
 	public Handler<RoutingContext> tratarPost() {
 		return new Handler<RoutingContext>() {
 			@Override
-			public void handle(RoutingContext context) {
-						
-				HashMap<String, Object> corpoRequisiscao = converterBodyParaMapa(context);			
-				
-				barramentoDeServicos.send("gerarRemessa", new JsonObject(corpoRequisiscao));
+			public void handle(RoutingContext context) {				
+										
+				barramentoDeServicos.send("gerarRemessa", context.getBodyAsJson());
 				
 				context.response().sendFile(DEFAULT_PAGE);
 			}

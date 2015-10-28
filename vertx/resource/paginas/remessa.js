@@ -1,34 +1,26 @@
-(function($) {
-$.fn.serializeFormJSON = function() {
-
-   var o = {};
-   var a = this.serializeArray();
-   $.each(a, function() {
-       if (o[this.name]) {
-           if (!o[this.name].push) {
-               o[this.name] = [o[this.name]];
-           }
-           o[this.name].push(this.value || '');
-       } else {
-           o[this.name] = this.value || '';
-       }
-   });
-   return o;
-};
-})(jQuery);
-
-function gerarRemessa() {
+function gerarRemessa() {	
 	$('#formRemessa').submit(function(event) {		
-		alert($('#formRemessa').serializeFormJSON());
 		$.ajax({
 			url : window.location.href,
 			dateType : 'json',
 			type : 'POST',
-			data : $('#formRemessa').serializeFormJSON(),
+			data : formParaJSON(),
 			success : function() {
-				//Tem essa parada
+				alert("Arquivo será gerado por processos assíncronos.");
 			}
 		});
+		location.reload();
 		return false;
-	});
+	});	
+}
+
+function formParaJSON() {
+	var jsonObj = {
+		"codigoBeneficiario" : document.getElementById("codigoBeneficiario").value.trim(),
+		"nomeBeneficiario" : document.getElementById("nomeBeneficiario").value.trim(),
+		"codigoAgencia" : document.getElementById("codigoAgencia").value.trim(),
+		"codigoBanco" : document.getElementById("codigoBanco").value.trim(),
+		"nomeBanco" : document.getElementById("nomeBanco").value.trim()
+	};
+	return JSON.stringify(jsonObj);
 }
