@@ -35,13 +35,11 @@ public class GerarArquivoRemessa extends AbstractVerticle {
 	public void start() throws Exception {
 		logger.info("Registrando worker EscreverArquivoRemessa");
 		
-		vertx.eventBus().consumer("gerarRemessa", new Handler<Message<JsonObject>>() {
-			@Override
-			public void handle(Message<JsonObject> event) {
+		vertx.eventBus().consumer("gerarRemessa", (Message<JsonObject> evento) -> {
 				
-				Banco banco = new ConverterBodyParaBanco().converterPara(event.body());
+				Banco banco = new ConverterBodyParaBanco().converterPara(evento.body());
 								
-				Beneficiario beneficiario  = new ConverterBodyParaBeneficiario().converterPara(event.body());
+				Beneficiario beneficiario  = new ConverterBodyParaBeneficiario().converterPara(evento.body());
 				
 				VertxCNAB400Cabecalho cabecalho = new VertxCNAB400Cabecalho(banco, beneficiario);
 				
@@ -53,50 +51,49 @@ public class GerarArquivoRemessa extends AbstractVerticle {
 				
 				vertx.fileSystem().writeFile(arquivoRemessa
 						, Buffer.buffer(gerarCabecalho(cabecalho)), tratamentoFinalizacaoArquivo);
-			}
-
-			/**
-			 * @return
-			 */
-			private String gerarNomeArquivo() {
-				return gerarCaminhoArquivo()
-						.concat(String.valueOf(System.currentTimeMillis())).concat(".REM");
-			}
-
-			/**
-			 * @return
-			 */
-			private String gerarCaminhoArquivo() {
-				return System.getProperty("user.home").concat(System.getProperty("file.separator")).concat("CNAB400")
-						.concat(System.getProperty("file.separator")).concat("REMESSA").concat(System.getProperty("file.separator"));
-			}
-
-			/**
-			 * Retorna o cabeçalho em formatado para escrita
-			 * @param cabecalho
-			 * @return
-			 */
-			private String gerarCabecalho(VertxCNAB400Cabecalho cabecalho) {
-				return new StringBuilder()
-						.append(cabecalho.codigoRegistro())
-						.append(cabecalho.codigoRemessa())
-						.append(cabecalho.literalRemessa())
-						.append(cabecalho.codigoServico())
-						.append(cabecalho.literalServico())
-						.append(cabecalho.codigoAgencia())
-						.append(cabecalho.codigoBeneficiario())
-						.append(cabecalho.usoExclusivo1())
-						.append(cabecalho.nomeEmpresa())
-						.append(cabecalho.codigoBanco())
-						.append(cabecalho.nomeBanco())
-						.append(cabecalho.dataGeracao())
-						.append(cabecalho.usoExclusivo2())
-						.append(cabecalho.numeroSequencialA())
-						.append(cabecalho.numeroSequencialB())												
-						.toString();
-			}
-		});
+			});
 		
+	}
+	
+	/**
+	 * @return
+	 */
+	private String gerarNomeArquivo() {
+		return gerarCaminhoArquivo()
+				.concat(String.valueOf(System.currentTimeMillis())).concat(".REM");
+	}
+
+	/**
+	 * @return
+	 */
+	private String gerarCaminhoArquivo() {
+		return System.getProperty("user.home").concat(System.getProperty("file.separator")).concat("CNAB400")
+				.concat(System.getProperty("file.separator")).concat("REMESSA").concat(System.getProperty("file.separator"));
+	}
+
+	/**
+	 * Retorna o cabeçalho em formatado para escrita
+	 * @param cabecalho
+	 * @return
+	 */
+	private String gerarCabecalho(VertxCNAB400Cabecalho cabecalho) {
+		return new StringBuilder()
+				.append(cabecalho.codigoRegistro())
+				.append(cabecalho.codigoRemessa())
+				.append(cabecalho.literalRemessa())
+				.append(cabecalho.codigoServico())
+				.append(cabecalho.literalServico())
+				.append(cabecalho.codigoAgencia())
+				.append(cabecalho.codigoBeneficiario())
+				.append(cabecalho.usoExclusivo1())
+				.append(cabecalho.nomeEmpresa())
+				.append(cabecalho.codigoBanco())
+				.append(cabecalho.nomeBanco())
+				.append(cabecalho.dataGeracao())
+				.append(cabecalho.usoExclusivo2())
+				.append(cabecalho.numeroSequencialA())
+				.append(cabecalho.numeroSequencialB())												
+				.toString();
 	}
 
 	

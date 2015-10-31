@@ -18,9 +18,10 @@ public class RotaEstaticos  extends AbstractGeradorDeRota {
 	
 	public RotaEstaticos(Router roteador, EventBus barramentoDeServicos) {
 		super(roteador, barramentoDeServicos);
-		
-		TratarRequisoesEstaticas tratamento = new TratarRequisoesEstaticas();
-		gerarRota(getRota(), tratamento.tratarRota());
+			
+		gerarRota(getRota(), (contexto) -> {
+			contexto.response().sendFile('.' + (contexto.request().path()));		
+		});
 	}
 
 	protected String getRota() {

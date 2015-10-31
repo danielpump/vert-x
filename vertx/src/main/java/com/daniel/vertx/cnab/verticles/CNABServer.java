@@ -16,6 +16,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.daniel.vertx.cnab.config.CNABConfig;
 import com.daniel.vertx.cnab.routers.RotaEstaticos;
 import com.daniel.vertx.cnab.routers.RotaRemessa;
 
@@ -41,6 +45,7 @@ public class CNABServer  extends AbstractVerticle {
 	public void start() throws Exception {		
 		
 		logger.info("Iniciando aplicação!");
+		//ApplicationContext context = new AnnotationConfigApplicationContext(CNABConfig.class);
 		
 		configurarServidor();
 		
@@ -61,6 +66,7 @@ public class CNABServer  extends AbstractVerticle {
 		registrarRotas(roteador);
 		
 		//Registrando workers
+		//Cada verticle terá alem de sua instancia suas configuraçõs de deployment
 		vertx.deployVerticle("com.daniel.vertx.cnab.workers.GerarArquivoRemessa",
 				new DeploymentOptions().setInstances(2).setWorker(true));
 		
@@ -76,9 +82,15 @@ public class CNABServer  extends AbstractVerticle {
 	 * @throws NoSuchMethodException
 	 */
 	private void registrarRotas(Router roteador) throws InstantiationException,IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		for (Class classeDeRoteamento : rotas) {			
-			classeDeRoteamento.getDeclaredConstructor(Router.class, EventBus.class).newInstance(roteador, vertx.eventBus());//Só pra usar metaprog de curtição...
-		}
+		rotas.forEach((classeDeRoteamento) -> { 			
+			try {
+				//Só pra usar metaprog de curtição...
+				classeDeRoteamento.getDeclaredConstructor(Router.class, EventBus.class).newInstance(roteador, vertx.eventBus());
+			} catch (Exception e) {
+				logger.error("Erro  ao carregar rota:" + e.getMessage(), e);
+			}
+		});
+		
 	}
 
 }
