@@ -119,5 +119,18 @@ public class GerarArquivoRemessa extends AbstractVerticle implements WorkerDeplo
 		return new DeploymentOptions().setInstances(1).setWorker(true);
 	}
 
+	public void setTratamentoFinalizacaoArquivo(
+			Handler<AsyncResult<Void>> tratamentoFinalizacaoArquivo) {
+		this.tratamentoFinalizacaoArquivo = tratamentoFinalizacaoArquivo;
+	}
+
+	public void setConversorBanco(Conversor<Banco> conversorBanco) {
+		this.conversorBanco = conversorBanco;
+	}
+
+	public void setConversorBeneficiario(
+			Conversor<Beneficiario> conversorBeneficiario) {
+		this.conversorBeneficiario = conversorBeneficiario;
+	}
 	
 }

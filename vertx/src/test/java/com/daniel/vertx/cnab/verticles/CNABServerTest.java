@@ -30,15 +30,6 @@ public class CNABServerTest {
 		vertx.deployVerticle(CNABServer.class.getName(), context.asyncAssertSuccess());
 	}
 
-	/**
-	 * Para o servidor Vert-x inicializado
-	 * @param context
-	 */
-	@After
-	public void tearDown(TestContext context) {
-		vertx.close(context.asyncAssertSuccess());
-	}
-
 	@Test
 	public void testantoServidorNoArAPartirDaPaginaCarregadaComOsCampos(TestContext context) {
 		final Async async = context.async();

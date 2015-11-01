@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.daniel.vertx.cnab.config.CNABConfig;
 import com.daniel.vertx.cnab.workers.WorkerDeployment;
 
 /**
