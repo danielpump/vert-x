@@ -4,24 +4,18 @@
 package com.daniel.vertx.cnab.verticles;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.DeploymentOptions;
-import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.logging.JULLogDelegateFactory;
 import io.vertx.core.logging.Logger;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.handler.BodyHandler;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.daniel.vertx.cnab.config.CNABConfig;
-import com.daniel.vertx.cnab.routers.RotaEstaticos;
-import com.daniel.vertx.cnab.routers.RotaRemessa;
+import com.daniel.vertx.cnab.workers.WorkerDeployment;
 
 /**
  * Classe que inica o servidor de geração de arquivos de remessa
@@ -32,20 +26,14 @@ public class CNABServer  extends AbstractVerticle {
 	
 	private static Logger logger = new Logger(new JULLogDelegateFactory().createDelegate("CNABServer"));
 	
-	public static  List<Class> rotas;
-	
-	static{
-		rotas = new ArrayList<Class>();
-		
-		rotas.add(RotaRemessa.class);
-		rotas.add(RotaEstaticos.class);
-	}
+	private AnnotationConfigApplicationContext contextoSpring;
 	
 	@Override
 	public void start() throws Exception {		
 		
 		logger.info("Iniciando aplicação!");
-		//ApplicationContext context = new AnnotationConfigApplicationContext(CNABConfig.class);
+		//Iniciando contexto Spring
+		contextoSpring = new AnnotationConfigApplicationContext(CNABConfig.class);
 		
 		configurarServidor();
 		
@@ -60,37 +48,27 @@ public class CNABServer  extends AbstractVerticle {
 	 */
 	private void configurarServidor() throws InstantiationException,IllegalAccessException, InvocationTargetException,NoSuchMethodException {
 		HttpServer servidor = vertx.createHttpServer();
-		Router roteador = Router.router(vertx);
 		
-		roteador.route().handler(BodyHandler.create());//Necessario para habilitar a recuperação do corpo das requisições
-		registrarRotas(roteador);
-		
-		//Registrando workers
-		//Cada verticle terá alem de sua instancia suas configuraçõs de deployment
-		vertx.deployVerticle("com.daniel.vertx.cnab.workers.GerarArquivoRemessa",
-				new DeploymentOptions().setInstances(2).setWorker(true));
-		
+		registrarWorkers();		
+				
+		Router roteador = (Router) contextoSpring.getBean(Router.class);
 		servidor.requestHandler(roteador::accept).listen(8080);
 	}
 
 	/**
-	 * Registra as rotas que serão utilizadas pela aplicação
-	 * @param roteador
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 * @throws NoSuchMethodException
+	 * Registro dos workers da aplicação criados como beans do Spring
+	 * @param workersParaRegistrar
 	 */
-	private void registrarRotas(Router roteador) throws InstantiationException,IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		rotas.forEach((classeDeRoteamento) -> { 			
-			try {
-				//Só pra usar metaprog de curtição...
-				classeDeRoteamento.getDeclaredConstructor(Router.class, EventBus.class).newInstance(roteador, vertx.eventBus());
-			} catch (Exception e) {
-				logger.error("Erro  ao carregar rota:" + e.getMessage(), e);
-			}
-		});
-		
+	private void registrarWorkers() {
+		Map<String, AbstractVerticle> workersParaRegistrar = contextoSpring.getBeansOfType(AbstractVerticle.class);
+		//Foi carregada a lista de AbstractVerticle, apenas com o intuito de utilizar a funcionalidade de filtro
+		workersParaRegistrar.values().stream().
+			filter((verticle) -> verticle instanceof WorkerDeployment).//Filtrando os workers da aplicação
+			forEach( (worker) ->
+				//Carregando os workers no contexto vertx
+				vertx.deployVerticle(worker, ((WorkerDeployment)worker).configuracoesDeDeploy())
+			);
 	}
+
 
 }

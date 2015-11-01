@@ -11,8 +11,6 @@ import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.ServerWebSocket;
 import io.vertx.core.shareddata.LocalMap;
 
-import java.util.Set;
-
 /**
  * @author daniel
  *

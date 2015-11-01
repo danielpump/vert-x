@@ -1,10 +1,8 @@
 package com.daniel.vertx.cnab.conversores;
 
-import static org.junit.Assert.*;
-import io.vertx.core.AsyncResult;
+import static org.junit.Assert.assertEquals;
 import io.vertx.core.json.JsonObject;
 
-import org.jmock.Mockery;
 import org.junit.Before;
 import org.junit.Test;
 

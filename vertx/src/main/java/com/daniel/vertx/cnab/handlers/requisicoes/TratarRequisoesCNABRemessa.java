@@ -6,18 +6,9 @@ package com.daniel.vertx.cnab.handlers.requisicoes;
 import io.vertx.core.Handler;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.http.HttpServerResponse;
-import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.JULLogDelegateFactory;
 import io.vertx.core.logging.Logger;
 import io.vertx.ext.web.RoutingContext;
-
-import java.util.HashMap;
-import java.util.function.Predicate;
-
-import com.daniel.vertx.cnab.entidades.Banco;
-import com.daniel.vertx.cnab.entidades.Beneficiario;
-import com.daniel.vertx.cnab.remessa.VertxCNAB400Cabecalho;
-import com.google.common.base.Strings;
 
 /**
  * Trata uma requisição para a pagina de geração do arquivo CNAB400

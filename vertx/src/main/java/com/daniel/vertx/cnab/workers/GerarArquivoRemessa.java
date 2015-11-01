@@ -3,15 +3,17 @@
  */
 package com.daniel.vertx.cnab.workers;
 
-import java.text.MessageFormat;
-
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Handler;
+import io.vertx.core.DeploymentOptions;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.JULLogDelegateFactory;
 import io.vertx.core.logging.Logger;
+
+import java.text.MessageFormat;
+
+import org.springframework.stereotype.Service;
 
 import com.daniel.vertx.cnab.conversores.ConverterBodyParaBanco;
 import com.daniel.vertx.cnab.conversores.ConverterBodyParaBeneficiario;
@@ -25,7 +27,8 @@ import com.daniel.vertx.cnab.remessa.VertxCNAB400Cabecalho;
  * @author daniel
  *
  */
-public class GerarArquivoRemessa extends AbstractVerticle {
+@Service
+public class GerarArquivoRemessa extends AbstractVerticle implements WorkerDeployment {
 	
 	private static Logger logger = new Logger(new JULLogDelegateFactory().createDelegate("EscreverArquivoRemessa"));
 	
@@ -94,6 +97,11 @@ public class GerarArquivoRemessa extends AbstractVerticle {
 				.append(cabecalho.numeroSequencialA())
 				.append(cabecalho.numeroSequencialB())												
 				.toString();
+	}
+
+	@Override
+	public DeploymentOptions configuracoesDeDeploy() {
+		return new DeploymentOptions().setInstances(1).setWorker(true);
 	}
 
 	

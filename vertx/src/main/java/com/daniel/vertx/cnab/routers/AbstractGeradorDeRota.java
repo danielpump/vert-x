@@ -4,9 +4,12 @@
 package com.daniel.vertx.cnab.routers;
 
 import io.vertx.core.Handler;
-import io.vertx.core.eventbus.EventBus;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Classe genérica para a geração das rotas
@@ -15,12 +18,11 @@ import io.vertx.ext.web.RoutingContext;
  */
 public abstract class AbstractGeradorDeRota {
 	
+	@Autowired
 	protected Router roteador;
-
-	public AbstractGeradorDeRota(Router roteador, EventBus barramentoDeServicos) {
-		super();
-		this.roteador = roteador;		
-	}
+	
+	@PostConstruct
+	public abstract void postConstruct();
 	
 	public void gerarRota(String rota, Handler<RoutingContext> tratamento){
 		roteador.route(rota).handler(tratamento);

@@ -1,21 +1,18 @@
 package com.daniel.vertx.cnab.workers;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-
+import static org.junit.Assert.assertEquals;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
 
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import com.daniel.vertx.cnab.verticles.CNABServer;
 
 @RunWith(VertxUnitRunner.class)
 public class GerarArquivoRemessaTest {

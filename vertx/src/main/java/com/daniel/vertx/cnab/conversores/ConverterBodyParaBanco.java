@@ -5,8 +5,6 @@ package com.daniel.vertx.cnab.conversores;
 
 import io.vertx.core.json.JsonObject;
 
-import java.util.HashMap;
-
 import com.daniel.vertx.cnab.entidades.Banco;
 import com.google.common.base.Strings;
 
