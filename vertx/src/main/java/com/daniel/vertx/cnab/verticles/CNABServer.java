@@ -14,7 +14,6 @@ import java.util.Map;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.daniel.vertx.cnab.config.CNABConfig;
 import com.daniel.vertx.cnab.workers.WorkerDeployment;
 
 /**
@@ -61,7 +60,7 @@ public class CNABServer  extends AbstractVerticle {
 	 */
 	private void registrarWorkers() {
 		Map<String, AbstractVerticle> workersParaRegistrar = contextoSpring.getBeansOfType(AbstractVerticle.class);
-		//Foi carregada a lista de AbstractVerticle, apenas com o intuito de utilizar a funcionalidade de filtro
+		//Foi carregada a lista de AbstractVerticle, apenas com o intuito de utilizar a funcionalidade de filtro da StreamAPI
 		workersParaRegistrar.values().stream().
 			filter((verticle) -> verticle instanceof WorkerDeployment).//Filtrando os workers da aplicação
 			forEach( (worker) ->

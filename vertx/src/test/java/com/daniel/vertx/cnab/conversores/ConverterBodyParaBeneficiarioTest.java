@@ -28,7 +28,7 @@ public class ConverterBodyParaBeneficiarioTest {
 	@Test
 	public void conversaoComParametros(){
 		
-		Beneficiario beneficiario = converter.converterPara(new JsonObject("{\"codigoBeneficiario\":\"963\", \"nomeBeneficiario\":\"TesteBeneficiario\", \"codigoAgencia\":\"147\"}"));
+		Beneficiario beneficiario = converter.converter(new JsonObject("{\"codigoBeneficiario\":\"963\", \"nomeBeneficiario\":\"TesteBeneficiario\", \"codigoAgencia\":\"147\"}"));
 		
 		
 		assertEquals("963", beneficiario.getCodigo());
@@ -40,7 +40,7 @@ public class ConverterBodyParaBeneficiarioTest {
 	@Test
 	public void conversaoComSemParametrosParaBeneficiarioDeTeste(){
 		
-		Beneficiario beneficiario = converter.converterPara(new JsonObject("{\"codigoBeneficiario\":\"\", \"nomeBeneficiario\":\"\", \"codigoAgencia\":\"\"}"));
+		Beneficiario beneficiario = converter.converter(new JsonObject("{\"codigoBeneficiario\":\"\", \"nomeBeneficiario\":\"\", \"codigoAgencia\":\"\"}"));
 		
 		
 		assertEquals("789", beneficiario.getCodigo());

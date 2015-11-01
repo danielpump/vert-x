@@ -3,6 +3,8 @@
  */
 package com.daniel.vertx.cnab.handlers;
 
+import org.springframework.stereotype.Component;
+
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.logging.JULLogDelegateFactory;
@@ -13,6 +15,7 @@ import io.vertx.core.logging.Logger;
  * @author daniel
  *
  */
+@Component
 public class FinalizacaoArquivo implements Handler<AsyncResult<Void>> {
 	
 	private static Logger logger = new Logger(new JULLogDelegateFactory().createDelegate("FinalizacaoArquivo"));

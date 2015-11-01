@@ -7,6 +7,8 @@ Java 8
 
 Maven 3
 
+Spring 4
+
 #Executar o projeto
 Para executar o projeto o gerenciador de dependecias maven e o Java na versão 8 devem estar configurados na máquina.
 
@@ -31,6 +33,10 @@ arquivo de remessa do protocolo CNAB400(Documento em anexo).
 Como é um exemplo foi desenvolvida apenas a escrita do header do arquivo, mas com isso já foi possivel ver como o framework se comporta. A
 escrita funciona a partir de uma requisição rest post. Tambem foi desenvolvida uma tela simples que é acessada a partir 
 da [URL local /remessa] (http://localhost:8080/remessa)
+
+Após o framework Spring ter sido adicionado, a forma como os roteadores são registrador foi feita a partir da injecção dedependencia, agora
+a forma como os routers e o workers são registrados se tornou implicita, o simples fato de registra-los com as classes/interfaces respectivas
+de cada tipo já faz com que o contexto da aplicação os utilize.
  
 
 #Repositório Verticle

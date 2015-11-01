@@ -29,7 +29,7 @@ public class ConverterBodyParaBancoTest {
 	@Test
 	public void conversaoComParametros(){
 		
-		Banco banco = converter.converterPara(new JsonObject("{\"codigoBanco\":\"789\", \"nomeBanco\":\"TesteBanco\"}"));
+		Banco banco = converter.converter(new JsonObject("{\"codigoBanco\":\"789\", \"nomeBanco\":\"TesteBanco\"}"));
 		
 		
 		assertEquals("789", banco.getCodigo());
@@ -40,7 +40,7 @@ public class ConverterBodyParaBancoTest {
 	@Test
 	public void conversaoComSemParametrosParaBancoDeTeste(){
 		
-		Banco banco = converter.converterPara(new JsonObject("{\"codigoBanco\":\"\", \"nomeBanco\":\"\"}"));
+		Banco banco = converter.converter(new JsonObject("{\"codigoBanco\":\"\", \"nomeBanco\":\"\"}"));
 		
 		
 		assertEquals("123", banco.getCodigo());

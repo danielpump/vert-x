@@ -3,6 +3,8 @@
  */
 package com.daniel.vertx.cnab.conversores;
 
+import org.springframework.stereotype.Component;
+
 import io.vertx.core.json.JsonObject;
 
 import com.daniel.vertx.cnab.entidades.Banco;
@@ -13,10 +15,11 @@ import com.google.common.base.Strings;
  * @author daniel
  *
  */
+@Component
 public class ConverterBodyParaBanco implements Conversor<Banco> {
 
 	@Override
-	public Banco converterPara(JsonObject jsonBody) {
+	public Banco converter(JsonObject jsonBody) {
 		
 		String codigobanco = jsonBody.getString("codigoBanco");
 		String nomebanco = jsonBody.getString("nomeBanco");

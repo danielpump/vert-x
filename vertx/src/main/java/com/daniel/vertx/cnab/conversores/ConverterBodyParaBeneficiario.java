@@ -5,6 +5,8 @@ package com.daniel.vertx.cnab.conversores;
 
 import io.vertx.core.json.JsonObject;
 
+import org.springframework.stereotype.Component;
+
 import com.daniel.vertx.cnab.entidades.Beneficiario;
 import com.google.common.base.Strings;
 
@@ -12,10 +14,11 @@ import com.google.common.base.Strings;
  * @author daniel
  *
  */
+@Component
 public class ConverterBodyParaBeneficiario implements Conversor<Beneficiario> {
 
 	@Override
-	public Beneficiario converterPara(JsonObject jsonBody) {
+	public Beneficiario converter(JsonObject jsonBody) {
 
 		String codigoBeneficiario = jsonBody.getString("codigoBeneficiario");
 		String nomeBeneficiario = jsonBody.getString("nomeBeneficiario");

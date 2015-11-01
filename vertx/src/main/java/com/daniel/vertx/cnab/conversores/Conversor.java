@@ -13,6 +13,6 @@ import io.vertx.core.json.JsonObject;
 @FunctionalInterface
 public interface Conversor<T> {
 
-	T converterPara(JsonObject jsonBody);
+	T converter(JsonObject jsonBody);
 	
 }

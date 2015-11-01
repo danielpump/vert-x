@@ -4,7 +4,9 @@
 package com.daniel.vertx.cnab.workers;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.AsyncResult;
 import io.vertx.core.DeploymentOptions;
+import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
@@ -13,8 +15,11 @@ import io.vertx.core.logging.Logger;
 
 import java.text.MessageFormat;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.daniel.vertx.cnab.conversores.Conversor;
 import com.daniel.vertx.cnab.conversores.ConverterBodyParaBanco;
 import com.daniel.vertx.cnab.conversores.ConverterBodyParaBeneficiario;
 import com.daniel.vertx.cnab.entidades.Banco;
@@ -32,7 +37,17 @@ public class GerarArquivoRemessa extends AbstractVerticle implements WorkerDeplo
 	
 	private static Logger logger = new Logger(new JULLogDelegateFactory().createDelegate("EscreverArquivoRemessa"));
 	
-	FinalizacaoArquivo tratamentoFinalizacaoArquivo = new FinalizacaoArquivo();
+	@Autowired
+	@Qualifier("finalizacaoArquivo")
+	private Handler<AsyncResult<Void>> tratamentoFinalizacaoArquivo;
+	
+	@Autowired
+	@Qualifier("converterBodyParaBanco")
+	private Conversor<Banco> conversorBanco;
+	
+	@Autowired
+	@Qualifier("converterBodyParaBeneficiario")
+	private Conversor<Beneficiario> conversorBeneficiario;
 	
 	@Override
 	public void start() throws Exception {
@@ -40,9 +55,9 @@ public class GerarArquivoRemessa extends AbstractVerticle implements WorkerDeplo
 		
 		vertx.eventBus().consumer("gerarRemessa", (Message<JsonObject> evento) -> {
 				
-				Banco banco = new ConverterBodyParaBanco().converterPara(evento.body());
+				Banco banco = conversorBanco.converter(evento.body());
 								
-				Beneficiario beneficiario  = new ConverterBodyParaBeneficiario().converterPara(evento.body());
+				Beneficiario beneficiario  = conversorBeneficiario.converter(evento.body());
 				
 				VertxCNAB400Cabecalho cabecalho = new VertxCNAB400Cabecalho(banco, beneficiario);
 				
