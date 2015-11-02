@@ -55,8 +55,11 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.2.2.RELEASE</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-mongo-client</artifactId>
+			<version>3.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

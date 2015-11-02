@@ -29,6 +29,13 @@ public class CNABServerTest {
 		vertx = Vertx.vertx();//Inicializando Vert-x
 		vertx.deployVerticle(CNABServer.class.getName(), context.asyncAssertSuccess());
 	}
+	
+
+	@After
+	public void tearDown(TestContext context) {
+		vertx.close(context.asyncAssertSuccess());
+	}
+
 
 	@Test
 	public void testantoServidorNoArAPartirDaPaginaCarregadaComOsCampos(TestContext context) {
@@ -45,6 +52,7 @@ public class CNABServerTest {
 				async.complete();
 			});
 		});
+		async.await();
 	}
 
 }

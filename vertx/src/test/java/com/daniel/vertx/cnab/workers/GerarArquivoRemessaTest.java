@@ -73,7 +73,7 @@ public class GerarArquivoRemessaTest {
 	 * @param context
 	 */
 	@Test
-	public void testantoServidorNoArAPartirDaPaginaCarregadaComOsCampos(TestContext context) {
+	public void testantoServidorNoArAPartirDaPaginaCarregadaComOsCampos(TestContext context) throws InterruptedException {
 		final Async async = context.async();
 		
 		String caminhoArquivoRemessa = caminhoArquivoRemessa();
@@ -101,10 +101,8 @@ public class GerarArquivoRemessaTest {
 		
 		async.complete();
 		
-		try {
-			Thread.sleep(2000l);
-		} catch (InterruptedException e) {}
-		
+		Thread.sleep(2000l);
+				
 		pasta = new File(caminhoArquivoRemessa);
 		
 		Integer quantidadeDeArquivosDepois = pasta.listFiles().length;		
