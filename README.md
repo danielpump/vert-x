@@ -27,6 +27,9 @@ Acessar a URL:
 E navegar pela aplicação
 
 #Integração CNAB
+As classes referentes a integrão CNAB400 está disponíveis a parit da raiz de pacote: 
+>com.daniel.vertx.cnab
+
 Afim de testar as funcionalidades de escrita de arquivo e o processamento rest do Vert-x, foi desenvolvida a funcionalidade de escrita do
 arquivo de remessa do protocolo CNAB400(Documento em anexo). 
 
@@ -34,10 +37,12 @@ Como é um exemplo foi desenvolvida apenas a escrita do header do arquivo, mas c
 escrita funciona a partir de uma requisição rest post. Tambem foi desenvolvida uma tela simples que é acessada a partir 
 da [URL local /remessa] (http://localhost:8080/remessa)
 
-Após o framework Spring ter sido adicionado, a forma como os roteadores são registrador foi feita a partir da injecção dedependencia, agora
-a forma como os routers e o workers são registrados se tornou implicita, o simples fato de registra-los com as classes/interfaces respectivas
-de cada tipo já faz com que o contexto da aplicação os utilize.
+Após o framework Spring ter sido adicionado, a forma como o sistema de roteamento é carregado, passou a ser feita a partir da injecção 
+dedependencia. A partir de agora a forma como os routers e os workers são registrados se tornou implícita, o simples fato de registra-los 
+com as classes/interfaces respectivas de cada tipo já faz com que o contexto da aplicação os e registre e utilize.
  
+#Persistência com restfull
+
 
 #Repositório Verticle
 Repositório com exemplos da versão 3.1.0:
