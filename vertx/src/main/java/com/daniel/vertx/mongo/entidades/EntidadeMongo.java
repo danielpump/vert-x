@@ -14,7 +14,5 @@ public interface EntidadeMongo {
 	String get_id();
 	
 	void set_id(String _id);
-	
-	JsonObject toJSON();
 
 }

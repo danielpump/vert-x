@@ -4,9 +4,11 @@
 package com.daniel.vertx.mongo.rotas;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
+import com.daniel.vertx.mongo.dao.CargoDAO;
 import com.daniel.vertx.mongo.entidades.Cargo;
 
 
@@ -24,25 +26,25 @@ public class RotaCargo extends AbstractGeradorDeRota {
 	
 	private static Logger logger = new Logger(new JULLogDelegateFactory().createDelegate("RotaCargo"));
 
+	private CargoDAO cargoDAO;
+	
+	/**
+	 * Construtor padrão que recebe uma rota
+	 * @param cargoDAO
+	 */
+	public RotaCargo(CargoDAO cargoDAO) {
+		super();
+		this.cargoDAO = cargoDAO;
+	}
+
 	@Override
 	public void gerarRotas() {
 		gerarRota("/cargos", (contexto) -> {			
-			clienteMongo.find("cargos", new JsonObject(), (resultado) -> {
-				List<Cargo> cargos = new ArrayList<>();
-				if(resultado.succeeded()){
-					resultado.result().forEach((entidade) -> {						
-						cargos.add(Json.decodeValue(entidade.toString(), Cargo.class));						
-					});
-					contexto.response()
-				      .putHeader("content-type", "application/json; charset=utf-8")
-				      .end(Json.encodePrettily(cargos));
-				} else {					
-					contexto.response()
-				      .putHeader("content-type", "application/json; charset=utf-8")
-				      .end("Erro na busca");
-				}
-			});
-			
+			cargoDAO.carregarTodos(new HashMap<String, Object>(), (resultado) -> {				
+				contexto.response()
+			      .putHeader("content-type", "application/json; charset=utf-8")
+			      .end(Json.encodePrettily(resultado.result()));
+			});	
 		});		
 	}
 	

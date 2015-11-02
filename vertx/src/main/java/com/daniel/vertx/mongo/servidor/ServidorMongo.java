@@ -16,6 +16,7 @@ import io.vertx.ext.web.handler.BodyHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.daniel.vertx.mongo.dao.CargoDAO;
 import com.daniel.vertx.mongo.entidades.Cargo;
 import com.daniel.vertx.mongo.rotas.AbstractGeradorDeRota;
 import com.daniel.vertx.mongo.rotas.RotaCargo;
@@ -48,14 +49,13 @@ public class ServidorMongo extends AbstractVerticle {
 		Router roteador = Router.router(vertx);		
 		roteador.route().handler(BodyHandler.create());//Necessario para habilitar a recuperação do corpo das requisições
 		
-		List<AbstractGeradorDeRota> rotas = new ArrayList<AbstractGeradorDeRota>();
-		rotas.add(new RotaCargo());
+		JsonObject configuracaoMongo = criarConfiguracaoDeConexao();
 		
-		JsonObject configuracaoMongo = criarConfiguracaoDeConexao();	
+		List<AbstractGeradorDeRota> rotas = new ArrayList<AbstractGeradorDeRota>();
+		rotas.add(new RotaCargo(new CargoDAO(MongoClient.createShared(vertx, configuracaoMongo))));
 		
 		rotas.forEach((rota) -> {
-			rota.setRoteador(roteador);
-			rota.setClienteMongo(MongoClient.createShared(vertx, configuracaoMongo));
+			rota.setRoteador(roteador);			
 			rota.gerarRotas();
 		});
 		return roteador;

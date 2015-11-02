@@ -36,19 +36,4 @@ public class Cargo implements EntidadeMongo {
 		this.nome = nome;
 	}
 
-	@Override
-	public JsonObject toJSON() {
-		
-		JsonObject objetoJSON = new JsonObject();
-		if(!Strings.isNullOrEmpty(get_id())){
-			objetoJSON.put("_id", get_id());
-		}
-		if(!Strings.isNullOrEmpty(nome)){
-			objetoJSON.put("nome", nome);
-		}		
-		
-		return objetoJSON;
-	}
-
-
 }
