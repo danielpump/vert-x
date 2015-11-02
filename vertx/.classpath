@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
-  <classpathentry kind="src" path="target/generated-test-sources/test-annotations" output="target/test-classes" including="**/*.java"/>
-  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
-  <classpathentry kind="src" path="target/generated-sources/annotations" including="**/*.java"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/4.12/junit-4.12.jar" sourcepath="M2_REPO/junit/junit/4.12/junit-4.12-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/vertx/vertx-unit/3.1.0/vertx-unit-3.1.0.jar" sourcepath="M2_REPO/io/vertx/vertx-unit/3.1.0/vertx-unit-3.1.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/vertx/vertx-core/3.1.0/vertx-core-3.1.0.jar" sourcepath="M2_REPO/io/vertx/vertx-core/3.1.0/vertx-core-3.1.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-common/4.0.31.Final/netty-common-4.0.31.Final.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-buffer/4.0.31.Final/netty-buffer-4.0.31.Final.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-transport/4.0.31.Final/netty-transport-4.0.31.Final.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-handler/4.0.31.Final/netty-handler-4.0.31.Final.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-codec/4.0.31.Final/netty-codec-4.0.31.Final.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-http/4.0.31.Final/netty-codec-http-4.0.31.Final.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.6.1/jackson-core-2.6.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.6.1/jackson-databind-2.6.1.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.6.1/jackson-databind-2.6.1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.6.0/jackson-annotations-2.6.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/vertx/vertx-web/3.1.0/vertx-web-3.1.0.jar" sourcepath="M2_REPO/io/vertx/vertx-web/3.1.0/vertx-web-3.1.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/vertx/vertx-auth-common/3.1.0/vertx-auth-common-3.1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jmock/jmock-junit4/2.8.1/jmock-junit4-2.8.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jmock/jmock/2.8.1/jmock-2.8.1.jar" sourcepath="M2_REPO/org/jmock/jmock/2.8.1/jmock-2.8.1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jmock/jmock-testjar/2.8.1/jmock-testjar-2.8.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/cglib/cglib-nodep/3.1/cglib-nodep-3.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm/5.0.3/asm-5.0.3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/beanshell/bsh/1.3.0/bsh-1.3.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/4.2.2.RELEASE/spring-beans-4.2.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-beans/4.2.2.RELEASE/spring-beans-4.2.2.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/4.2.2.RELEASE/spring-core-4.2.2.RELEASE.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/4.2.2.RELEASE/spring-context-4.2.2.RELEASE.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/4.2.2.RELEASE/spring-aop-4.2.2.RELEASE.jar"/>
-  <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/4.2.2.RELEASE/spring-expression-4.2.2.RELEASE.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/vertx/vertx-mongo-client/3.1.0/vertx-mongo-client-3.1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mongodb/mongodb-driver-async/3.0.4/mongodb-driver-async-3.0.4.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mongodb/bson/3.0.4/bson-3.0.4.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mongodb/mongodb-driver-core/3.0.4/mongodb-driver-core-3.0.4.jar"/>
+	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations"/>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry including="**/*.java" kind="src" path="target/generated-sources/annotations"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/4.12/junit-4.12.jar" sourcepath="M2_REPO/junit/junit/4.12/junit-4.12-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/vertx/vertx-unit/3.1.0/vertx-unit-3.1.0.jar" sourcepath="M2_REPO/io/vertx/vertx-unit/3.1.0/vertx-unit-3.1.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/vertx/vertx-core/3.1.0/vertx-core-3.1.0.jar" sourcepath="M2_REPO/io/vertx/vertx-core/3.1.0/vertx-core-3.1.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-common/4.0.31.Final/netty-common-4.0.31.Final.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-buffer/4.0.31.Final/netty-buffer-4.0.31.Final.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-transport/4.0.31.Final/netty-transport-4.0.31.Final.jar" sourcepath="/home/daniel/.m2/repository/io/netty/netty-transport/4.0.31.Final/netty-transport-4.0.31.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-handler/4.0.31.Final/netty-handler-4.0.31.Final.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec/4.0.31.Final/netty-codec-4.0.31.Final.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-http/4.0.31.Final/netty-codec-http-4.0.31.Final.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.6.1/jackson-core-2.6.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.6.1/jackson-databind-2.6.1.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.6.1/jackson-databind-2.6.1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.6.0/jackson-annotations-2.6.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/vertx/vertx-web/3.1.0/vertx-web-3.1.0.jar" sourcepath="M2_REPO/io/vertx/vertx-web/3.1.0/vertx-web-3.1.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/vertx/vertx-auth-common/3.1.0/vertx-auth-common-3.1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jmock/jmock-junit4/2.8.1/jmock-junit4-2.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jmock/jmock/2.8.1/jmock-2.8.1.jar" sourcepath="M2_REPO/org/jmock/jmock/2.8.1/jmock-2.8.1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jmock/jmock-testjar/2.8.1/jmock-testjar-2.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/cglib/cglib-nodep/3.1/cglib-nodep-3.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/ow2/asm/asm/5.0.3/asm-5.0.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/beanshell/bsh/1.3.0/bsh-1.3.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/4.2.2.RELEASE/spring-beans-4.2.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-beans/4.2.2.RELEASE/spring-beans-4.2.2.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/4.2.2.RELEASE/spring-core-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/4.2.2.RELEASE/spring-context-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/4.2.2.RELEASE/spring-aop-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/4.2.2.RELEASE/spring-expression-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/vertx/vertx-mongo-client/3.1.0/vertx-mongo-client-3.1.0.jar" sourcepath="/home/daniel/.m2/repository/io/vertx/vertx-mongo-client/3.1.0/vertx-mongo-client-3.1.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mongodb/mongodb-driver-async/3.0.4/mongodb-driver-async-3.0.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mongodb/bson/3.0.4/bson-3.0.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mongodb/mongodb-driver-core/3.0.4/mongodb-driver-core-3.0.4.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
