@@ -39,13 +39,20 @@ public class RotaCargo extends AbstractGeradorDeRota {
 
 	@Override
 	public void gerarRotas() {
+		gerarPost("/cargos", (contexto) -> {			
+			Cargo cargo = Json.decodeValue(contexto.getBodyAsString(), Cargo.class);
+			cargoDAO.salvar(cargo, (resultado) -> {
+				contexto.response().putHeader("content-type", "application/json; charset=utf-8")
+			      .end(Json.encodePrettily(resultado.result()));
+			});
+		});
 		gerarRota("/cargos", (contexto) -> {			
 			cargoDAO.carregarTodos(new HashMap<String, Object>(), (resultado) -> {				
 				contexto.response()
 			      .putHeader("content-type", "application/json; charset=utf-8")
 			      .end(Json.encodePrettily(resultado.result()));
 			});	
-		});		
+		});
 	}
 	
 	

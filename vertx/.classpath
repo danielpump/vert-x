@@ -15,7 +15,7 @@
 	<classpathentry kind="var" path="M2_REPO/io/netty/netty-handler/4.0.31.Final/netty-handler-4.0.31.Final.jar"/>
 	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec/4.0.31.Final/netty-codec-4.0.31.Final.jar"/>
 	<classpathentry kind="var" path="M2_REPO/io/netty/netty-codec-http/4.0.31.Final/netty-codec-http-4.0.31.Final.jar"/>
-	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.6.1/jackson-core-2.6.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.6.1/jackson-core-2.6.1.jar" sourcepath="/home/daniel/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.6.1/jackson-core-2.6.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.6.1/jackson-databind-2.6.1.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.6.1/jackson-databind-2.6.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.6.0/jackson-annotations-2.6.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/io/vertx/vertx-web/3.1.0/vertx-web-3.1.0.jar" sourcepath="M2_REPO/io/vertx/vertx-web/3.1.0/vertx-web-3.1.0-sources.jar"/>

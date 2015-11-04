@@ -3,18 +3,19 @@
  */
 package com.daniel.vertx.mongo.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.JULLogDelegateFactory;
+import io.vertx.core.logging.Logger;
 import io.vertx.ext.mongo.MongoClient;
 
-import com.daniel.vertx.mongo.entidades.Cargo;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.daniel.vertx.mongo.entidades.EntidadeMongo;
 
 /**
@@ -23,6 +24,10 @@ import com.daniel.vertx.mongo.entidades.EntidadeMongo;
  *
  */
 public abstract class MongoDAO<T extends EntidadeMongo> {
+	
+	private static final String MONGO_ATTRIBUTE_ID = "_id";
+
+	private static Logger logger = new Logger(new JULLogDelegateFactory().createDelegate("MongoDAO"));
 	
 	protected MongoClient clienteMongo;	
 	
@@ -60,5 +65,36 @@ public abstract class MongoDAO<T extends EntidadeMongo> {
 		});
 	}
 	
+	
+	/**
+	 * Salva(Insere/atualiza) a entidade definida.
+	 * Caso seja salva com sucesso retorna a entidade com o id gerado: 
+	 * Caso de erro:
+	 * Na inserção retorna a entidade com o ID null e loga a mensagem de erro.
+	 * @param entidade Entidade para ser salva
+	 * @param tratarResultado Callback da execução
+	 */
+	public void salvar(T entidade, Handler<AsyncResult<T>> tratarResultado){
+		String entidadeJsonficada = Json.encode(entidade);
+		JsonObject entidadeJson = new JsonObject(entidadeJsonficada);
+		removeIDCasoSejaNulo(entidadeJson);
+		clienteMongo.save(getCollectionName(), entidadeJson, (resultado) -> {			
+			if(resultado.succeeded()){
+				entidade.set_id(resultado.result());
+			} else {
+				logger.error("Erro ao persistir: ", resultado.cause());
+			}
+			tratarResultado.handle(Future.succeededFuture(entidade));
+		});
+	}
+
+	/**
+	 * @param entidadeJson
+	 */
+	private void removeIDCasoSejaNulo(JsonObject entidadeJson) {
+		if(entidadeJson.getString(MONGO_ATTRIBUTE_ID) == null){
+			entidadeJson.remove(MONGO_ATTRIBUTE_ID);
+		}
+	}
 
 }

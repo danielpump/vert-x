@@ -9,12 +9,15 @@ import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 
 /**
+ * Representa a entidade de um cargo no negócio
  * @author daniel
  *
  */
 public class Cargo implements EntidadeMongo {
 	
 	private String _id;
+	
+	private String codigo;
 	
 	private String nome;
 
@@ -35,5 +38,15 @@ public class Cargo implements EntidadeMongo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	
+	
 
 }

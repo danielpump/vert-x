@@ -48,7 +48,7 @@ public class ServidorMongo extends AbstractVerticle {
 	private Router gerarRoteamento() {
 		Router roteador = Router.router(vertx);		
 		roteador.route().handler(BodyHandler.create());//Necessario para habilitar a recuperação do corpo das requisições
-		
+
 		JsonObject configuracaoMongo = criarConfiguracaoDeConexao();
 		
 		List<AbstractGeradorDeRota> rotas = new ArrayList<AbstractGeradorDeRota>();
